@@ -1,14 +1,14 @@
 package org.yangxin.disruptor.server;
 
-import io.netty.channel.*;
-import org.yangxin.disruptor.codec.MarshallingCodecFactory;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import org.yangxin.disruptor.codec.MarshallingCodecFactory;
 
 /**
  * @author yangxin
@@ -38,8 +38,8 @@ public class NettyServer {
                         @Override
                         protected void initChannel(SocketChannel ch) {
                             ch.pipeline().addLast(MarshallingCodecFactory.buildMarshallingDecoder())
-                                    .addLast(new ServerHandler())
-                                    .addLast(MarshallingCodecFactory.buildMarshallingEncoder());
+                                    .addLast(MarshallingCodecFactory.buildMarshallingEncoder())
+                                    .addLast(new ServerHandler());
                         }
                     });
 
